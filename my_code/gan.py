@@ -16,11 +16,13 @@ def show_images(images): # 定义画图工具
         plt.axis('off')
     # plt.show()
 
-file = '../MNIST'
-train_image = idx2numpy.convert_from_file(file+'/train-images.idx3-ubyte')
-train_label = idx2numpy.convert_from_file(file+'/train-labels.idx1-ubyte')
-test_image = idx2numpy.convert_from_file(file+'/t10k-images.idx3-ubyte')
-test_label = idx2numpy.convert_from_file(file+'/t10k-labels.idx1-ubyte')
+selected_number=9
+
+file = './MNIST'
+train_image = idx2numpy.convert_from_file(file+'/raw/train-images-idx3-ubyte')
+train_label = idx2numpy.convert_from_file(file+'/raw/train-labels-idx1-ubyte')
+test_image = idx2numpy.convert_from_file(file+'/raw/t10k-images-idx3-ubyte')
+test_label = idx2numpy.convert_from_file(file+'/raw/t10k-labels-idx1-ubyte')
 
 
 cuda = False
@@ -29,10 +31,18 @@ if(torch.cuda.is_available()):
 
 print(cuda)
 
+
+print(type(train_image[0]))
+for image in train_image:
+	mean = np.mean(image)
+	image = image - mean
+	std = np.std(image)
+	image = image / std
+
 fives=[]
 
 for i in range(train_image.shape[0]):
-    if train_label[i]==4:
+    if train_label[i]==selected_number:
         fives.append(train_image[i])
 fives=np.array(fives)
 # print(fives.shape)

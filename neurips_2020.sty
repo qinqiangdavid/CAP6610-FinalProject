@@ -78,8 +78,7 @@
     }
   \else
     \newcommand{\@noticestring}{%
-      Submitted to \@neuripsordinal\/ Conference on Neural Information
-      Processing Systems (NeurIPS \@neuripsyear). Do not distribute.%
+       %
     }
 
     % hide the acknowledgements
@@ -88,33 +87,12 @@
     \let\endack\endhide
     
     % line numbers for submission
-    \RequirePackage{lineno}
-    \linenumbers
+
 
     % fix incompatibilities between lineno and amsmath, if required, by
     % transparently wrapping linenomath environments around amsmath
     % environments
-    \AtBeginDocument{%
-      \@ifpackageloaded{amsmath}{%
-        \newcommand*\patchAmsMathEnvironmentForLineno[1]{%
-          \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
-          \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
-          \renewenvironment{#1}%
-                           {\linenomath\csname old#1\endcsname}%
-                           {\csname oldend#1\endcsname\endlinenomath}%
-        }%
-        \newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
-          \patchAmsMathEnvironmentForLineno{#1}%
-          \patchAmsMathEnvironmentForLineno{#1*}%
-        }%
-        \patchBothAmsMathEnvironmentsForLineno{equation}%
-        \patchBothAmsMathEnvironmentsForLineno{align}%
-        \patchBothAmsMathEnvironmentsForLineno{flalign}%
-        \patchBothAmsMathEnvironmentsForLineno{alignat}%
-        \patchBothAmsMathEnvironmentsForLineno{gather}%
-        \patchBothAmsMathEnvironmentsForLineno{multline}%
-      }{}
-    }
+
   \fi
 \fi
 
@@ -323,10 +301,9 @@
     \@bottomtitlebar
     \if@submission
       \begin{tabular}[t]{c}\bf\rule{\z@}{24\p@}
-        Anonymous Author(s) \\
-        Affiliation \\
-        Address \\
-        \texttt{email} \\
+        Zhuobiao Qiao \\
+UFID:15695876\\
+        \texttt{zhuobiaoqiao@ufl.edu} \\
       \end{tabular}%
     \else
       \def\And{%

@@ -9,8 +9,8 @@ from torchvision.utils import save_image
 
 bs = 100
 # MNIST Dataset
-train_dataset = datasets.MNIST(root='../', train=True, transform=transforms.ToTensor(), download=True)
-test_dataset = datasets.MNIST(root='../', train=False, transform=transforms.ToTensor(), download=False)
+train_dataset = datasets.MNIST(root='./', train=True, transform=transforms.ToTensor(), download=True)
+test_dataset = datasets.MNIST(root='./', train=False, transform=transforms.ToTensor(), download=False)
 
 # Data Loader (Input Pipeline)
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=bs, shuffle=True)
@@ -97,9 +97,9 @@ def test():
         
     test_loss /= len(test_loader.dataset)
     print('====> Test set loss: {:.4f}'.format(test_loss))
-for epoch in range(1, 51):
+for epoch in range(1,51):
     recon_batch = train(epoch)
-    save_image(torch.reshape(recon_batch,(100,28,28))[0], './results/image_'+str(epoch)+'.png')
+    save_image(torch.reshape(recon_batch,(100,28,28))[0], '../images/results/VAE/image_'+str(epoch)+'.png')
     test()
 
 # with torch.no_grad():
